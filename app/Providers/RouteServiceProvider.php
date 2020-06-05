@@ -48,6 +48,10 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapAdminRoutes();
 
+        $this->mapTeacherRoutes();
+
+        $this->mapSubAdminRoutes();
+
         //
     }
 
@@ -69,6 +73,18 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::namespace($this->namespace)
              ->group(base_path('routes/admin.php'));
+    }
+
+    protected function mapSubAdminRoutes()
+    {
+        Route::namespace($this->namespace)
+             ->group(base_path('routes/SubAdmin.php'));
+    }
+
+    protected function mapTeacherRoutes()
+    {
+        Route::namespace($this->namespace)
+             ->group(base_path('routes/teacher.php'));
     }
 
     /**
