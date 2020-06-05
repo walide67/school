@@ -1,3 +1,6 @@
+<p align='center'>
+<img src="https://www.schoology.com/sites/default/files/schoology-learning-management-system.jpg" width='400px' height='200px' />
+</p>
 <h2 dir='rtl'>
  التعريف بالمشروع
 </h2>
