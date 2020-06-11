@@ -46,6 +46,16 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'subAdmin' => [
+            'driver' => 'session',
+            'provider' => 'subAdmins',
+        ],
+
+        'teacher' => [
+            'driver' => 'session',
+            'provider' => 'teachers',
+        ]
     ],
 
     /*
@@ -70,6 +80,16 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+        'subAdmins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SubAdmin::class,
+        ],
+
+        'teachers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Teacher::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

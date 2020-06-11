@@ -15,7 +15,7 @@
                     @if (Route::has('login'))
                            {{-- @auth--}}
                             <li class="nav-item ">
-                                <a class="nav-link text-light" href="{{ url('/home') }}">خروج</a>
+                                <a class="nav-link text-light" href="{{ route('subAdmin.logout') }}">خروج</a>
                               </li>
                             {{--@endauth--}}
                     @endif

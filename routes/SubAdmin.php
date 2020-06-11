@@ -11,6 +11,11 @@
 |
 */
 Route::group(['prefix' => 'sub-admin', 'namespace'=> 'SubAdmin'], function () {
+   
+    Route::get('/login', 'SubAdminController@loginForm')->name('subAdmin.login');
+    Route::post('/login', 'SubAdminController@login')->name('subAdmin.login.submit');
+    Route::get('/logout', 'SubAdminController@logout')->name('subAdmin.logout');
+
     Route::get('/', 'SubAdminController@index')->name('subAdmin-panel');
 
     Route::group(['prefix' => 'annonces'], function(){
@@ -21,6 +26,7 @@ Route::group(['prefix' => 'sub-admin', 'namespace'=> 'SubAdmin'], function () {
     Route::group(['prefix' => 'teachers'], function(){
         Route::get('/', 'TeachersController@index')->name('teachers');
         Route::get('/add', 'TeachersController@addTeacherForm')->name('add-teacher');
+        Route::post('/add', 'TeachersController@addTeacher')->name('add.teacher.submit');
     });
 
     Route::group(['prefix' => 'classes'], function(){

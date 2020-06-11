@@ -10,7 +10,10 @@
 |
 */
 Route::group(['prefix'=> 'teacher-area', 'namespace' => 'Teacher'],function () {
-    Route::get('/', 'TeacherController@index');
+    
+    Route::get('/login', 'TeacherController@LoginForm')->name('teacher.login');
+    
+    Route::get('/', 'TeacherController@index')->name('teacher.panel');
 
     Route::group(['prefix'=> 'cours'],function(){
         Route::get('/', 'Cours@index')->name('showcours');
