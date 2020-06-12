@@ -29,7 +29,7 @@ class SubAdminController extends Controller
             $column_name = 'phone';
         }
 
-        if (Auth::guard('subAdmin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember_me)) {
+        if (Auth::guard('subAdmin')->attempt([$column_name => $request->email, 'password' => $request->password], $request->remember_me)) {
             return redirect()->intended(route('subAdmin-panel'));
         }
         $errors = new MessageBag(['faild' => ['Email and/or password invalid.']]);

@@ -20,11 +20,10 @@ class TeachersController extends Controller
     }
 
     public function addTeacher(SubAdminAddTeacherRequest $request){
-        // $check = $this->createTeacher($request->all(), '');
-        // if($check != null){
-        //     redirect()->back()->with('success', 'Teacher added with Success');
-        // }else{
-        //     redirect()->back()->with('error', 'Teacher registration faild!');
-        // }
+        
+        $check = $this->createTeacher($request->all(), '');
+        
+        return redirect()->back()->with('success', 'Teacher added with Success');
+        
     }
 }

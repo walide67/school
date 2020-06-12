@@ -58,6 +58,7 @@ add cour
                 <div class="form-group col-md-6">
                     <label for="metter">المادة</label>
                     <select class="form-control" name="matter" id="matter">
+                      <option value="">select</option>
                       <option value="1">الرياضيات</option>
                       <option value="2">اللغة الفرنسية</option>
                       <option value="3">اللغة العربية</option>
@@ -71,7 +72,7 @@ add cour
                      <label for="field">التخصصات</label>
                      <select dir="rtl" class="form-control" name="field" id="field" multiple>
                        <optgroup label="الاولى ثانوي">
-                        <option>الاولى ثانوي جذع مشنرك آداب</option>
+                        <option >الاولى ثانوي جذع مشنرك آداب</option>
                         <option>الاولى ثانوي جذع مشنرك علوم و تكنولوجيا</option>
                        </optgroup>
                        <optgroup label="الثانية ثانوي">

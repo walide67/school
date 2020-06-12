@@ -18,16 +18,36 @@
                 <h4>Teachers Login</h4>
               </div>
                <div class="card-body">
-                  <form id="sign_in_adm" class="text-left" method="POST" action="">
-                     {{ csrf_field() }}
-                  <div class="form-group">
-                    <label for="email">Email / Phone Number</label>
-                     <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="{{ old('email') }}" required autofocus>
+                  @if($error = $errors->first('faild'))
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                     </button>
+                    {{$error}}
                   </div>
-                  <br>
+                  @endif
+               <form class="text-left" method="POST" action="{{route('teacher.login.submit')}}">
+                     @csrf
+                  <div class="form-group">
+                    <label for="identify">Email / Phone Number</label>
+                     <input type="text" class="form-control" id="identify" name="identify" placeholder="Email Address" value="{{ old('email') }}" required autofocus>
+                     @error('identify')
+                     <small class="text-danger" >{{$message}}</small>
+                     @enderror
+                  </div>
                   <div class="form-group">
                     <label for="password">Password</label>
                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                     @error('password')
+                     <small class="text-danger" >{{$message}}</small>
+                     @enderror
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="remember_me" id="remember_me" value="{{old('remember_me')}}">
+                      Remember Me
+                    </label>
                   </div>
                   <br>
                   <div class="text-center">

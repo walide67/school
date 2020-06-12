@@ -12,6 +12,8 @@
 Route::group(['prefix'=> 'teacher-area', 'namespace' => 'Teacher'],function () {
     
     Route::get('/login', 'TeacherController@LoginForm')->name('teacher.login');
+    Route::post('/login', 'TeacherController@login')->name('teacher.login.submit');
+    Route::get('/logout', 'TeacherController@logout')->name('teacher.logout');
     
     Route::get('/', 'TeacherController@index')->name('teacher.panel');
 

@@ -15,7 +15,7 @@
                     @if (Route::has('login'))
                            {{-- @auth--}}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/home') }}">خروج</a>
+                                <a class="nav-link" href="{{ route('teacher.logout') }}">خروج</a>
                               </li>
                             {{--@endauth--}}
                     @endif
