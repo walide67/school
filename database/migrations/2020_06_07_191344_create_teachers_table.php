@@ -22,6 +22,7 @@ class CreateTeachersTable extends Migration
             $table->string('last_name');
             $table->integer('school_id')->unsigned();
             $table->integer('matter_id')->unsigned();
+            $table->boolean('status')->default(false);
             $table->string('photo');
             $table->float('rate');
             $table->integer('votes_number');

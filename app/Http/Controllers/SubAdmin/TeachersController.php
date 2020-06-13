@@ -21,7 +21,7 @@ class TeachersController extends Controller
 
     public function addTeacher(SubAdminAddTeacherRequest $request){
         
-        $check = $this->createTeacher($request->all(), '');
+        $check = $this->createTeacher($request->all(), '', 1);
         
         return redirect()->back()->with('success', 'Teacher added with Success');
         

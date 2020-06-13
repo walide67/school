@@ -17,7 +17,7 @@ class CreateMattersTable extends Migration
             $table->increments('id');
             $table->string('matter_name');
             $table->integer('matter_level');
-            $table->integer('matter_conf');
+            $table->string('matter_photo');
         });
     }
 
