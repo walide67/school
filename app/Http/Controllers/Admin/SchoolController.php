@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\MessageBag;
 use App\Traits\SubAdminTrait;
+use App\Http\Requests\AddSubAdminRequest;
 
 class SchoolController extends Controller
 {
@@ -24,8 +24,10 @@ class SchoolController extends Controller
         return view('admin.schools.add_school');
     }
 
-    public function addSchool(Request $request){
-        
-    }
+    public function addSchool(AddSubAdminRequest $request){
 
+        $this->createSubAdmin($request->all(), '', 1);
+
+        return redirect()->back()->with('success', 'School Added with success');
+    }
 }
