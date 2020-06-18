@@ -17,9 +17,12 @@ class CreateClassesTable extends Migration
             $table->increments('id');
             $table->integer('class_level');
             $table->integer('field_id')->unsigned();
+            $table->integer('school_id')->unsigned();
             $table->integer('class_number');
             $table->foreign('field_id')->references('id')->on('fields')
-            ->onDelete('cascade');
+                    ->onDelete('cascade');
+            $table->foreign('school_id')->references('id')->on('subadmins')
+                    ->onDelete('cascade');
         });
     }
 

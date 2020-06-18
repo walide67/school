@@ -28,7 +28,6 @@ class SubAdminAddTeacherRequest extends FormRequest
             'teacher_password' => 'required|min:8',
             'user_fname' => 'required',
             'user_lname' => 'required',
-            'school_id' => 'required|numeric',
             'matter' => 'required',
         ];
     }

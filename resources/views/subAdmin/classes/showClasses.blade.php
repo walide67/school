@@ -12,62 +12,43 @@ Cours
 @section('content')
     <div class="container">
         <div class="w-100 text-center my-3">
-        <h3>الدروس</h3>
+        <h3>الأقسام</h3>
         </div>
         <div class="w-100 mx-0 my-3">
             <table id="coursTable" class="row-border hover stripe text-right" style=" width: 100% ">
                 <thead>
                     <tr>
-                        <th>اسم الدرس</th>
-                        <th>تاريخ النشر</th>
-                        <th>نوع الملف</th>
-                        <th>عدد التحميلات</th>
-                        <th>التقييم</th>
+                        <th>المستوى</th>
+                        <th>التخصص</th>
+                        <th>رقم القسم</th>
+                        <th>المواد</th>
                         <th>العمليات</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($classes as $classe)
                     <tr>
-                        <td>المتميز في الرياضيات</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
-                            <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>المتميز في الرياضيات</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
-                            <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>المتميز في الرياضيات</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
+                    <td>{{$classe->class_level}}</td>
+                    <td>{{$classe->field->field_name}}</td>
+                    <td>{{$classe->class_number}}</td>
+                    <td>
+                        @foreach ($classe->matters as $matter)
+                            {{ $matter->matter_name }}
+                        @endforeach
+                    </td>
+                        <td class="d-flex no-wrap">
                         <a href="{{route('add-cour', 'edit')}}" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
                             <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>اسم الدرس</th>
-                        <th>تاريخ النشر</th>
-                        <th>نوع الملف</th>
-                        <th>عدد التحميلات</th>
-                        <th>التقييم</th>
+                        <th>المستوى</th>
+                        <th>التخصص</th>
+                        <th>رقم القسم</th>
+                        <th>المواد</th>
                         <th>العمليات</th>
                     </tr>
                 </tfoot>

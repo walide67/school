@@ -19,56 +19,30 @@
         <table id="coursTable" class="row-border hover stripe text-right" style=" width: 100% ">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>اسم التخصص</th>
-                    <th>تاريخ النشر</th>
-                    <th>نوع الملف</th>
-                    <th>عدد التحميلات</th>
-                    <th>التقييم</th>
+                    <th>صورة التخصص</th>
                     <th>العمليات</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach($fields as $field)
                 <tr>
-                    <td>المتميز في الرياضيات</td>
-                    <td>2012/12/02</td>
-                    <td>pdf</td>
-                    <td>61</td>
-                    <td>3.5</td>
+                    <td>{{$field->id}}</td>
+                    <td>{{$field->field_name}}</td>
+                    <td>{{$field->field_photo}}</td>
                     <td>
                         <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
                         <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>المتميز في الرياضيات</td>
-                    <td>2012/12/02</td>
-                    <td>pdf</td>
-                    <td>61</td>
-                    <td>3.5</td>
-                    <td>
-                        <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                        <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>المتميز في الرياضيات</td>
-                    <td>2012/12/02</td>
-                    <td>pdf</td>
-                    <td>61</td>
-                    <td>3.5</td>
-                    <td>
-                    <a href="{{route('add-cour', 'edit')}}" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                        <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
             <tfoot>
                 <tr>
+                    <th>#</th>
                     <th>اسم التخصص</th>
-                    <th>تاريخ النشر</th>
-                    <th>نوع الملف</th>
-                    <th>عدد التحميلات</th>
-                    <th>التقييم</th>
+                    <th>صورة التخصص</th>
                     <th>العمليات</th>
                 </tr>
             </tfoot>

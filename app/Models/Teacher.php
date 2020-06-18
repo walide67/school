@@ -25,4 +25,16 @@ class Teacher extends Authenticatable
     'notification_token',
     'remember_token'];
     protected $hidden = ['password','notification_token','remember_token'];
+
+    public function school(){
+        return $this->belongsTo(SubAdmin::class);
+    }
+
+    public function matter(){
+        return $this->belongsTo(Matter::class);
+    }
+
+    public function classes(){
+        return $this->belongsToMany(Classe::class, 'teacher_classe');
+    }
 }

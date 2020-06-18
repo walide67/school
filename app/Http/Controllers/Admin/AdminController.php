@@ -48,7 +48,11 @@ class AdminController extends Controller
         return redirect()->route('admin.login');
     }
 
-    public function addSchoolForm(){
-        return view('admin.schools.add_school');
+    public function showUserInfo(){
+        return view('admin.user.adminInfos');
+    }
+
+    public function showAccountInfo(){
+        return view('admin.user.adminAccount');
     }
 }

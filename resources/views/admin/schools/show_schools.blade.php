@@ -19,56 +19,47 @@
         <table id="coursTable" class="row-border hover stripe text-right" style=" width: 100% ">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>اسم المؤسسة</th>
-                    <th>تاريخ النشر</th>
-                    <th>نوع الملف</th>
-                    <th>عدد التحميلات</th>
-                    <th>التقييم</th>
+                    <th>البريد الالكتروني</th>
+                    <th>رقم الهاتف</th>
+                    <th>الولاية</th>
+                    <th>البلدية</th>
+                    <th>الحالة</th>
+                    <th>الصورة</th>
                     <th>العمليات</th>
+
                 </tr>
             </thead>
             <tbody>
+              
+                    @foreach($schools as $school)
                 <tr>
-                    <td>المتميز في الرياضيات</td>
-                    <td>2012/12/02</td>
-                    <td>pdf</td>
-                    <td>61</td>
-                    <td>3.5</td>
-                    <td>
-                        <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                        <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>المتميز في الرياضيات</td>
-                    <td>2012/12/02</td>
-                    <td>pdf</td>
-                    <td>61</td>
-                    <td>3.5</td>
-                    <td>
-                        <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                        <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>المتميز في الرياضيات</td>
-                    <td>2012/12/02</td>
-                    <td>pdf</td>
-                    <td>61</td>
-                    <td>3.5</td>
+                <td>{{$school->id}}</td>
+                <td>{{$school->school_name}}</td>
+                <td>{{$school->email}}</td>
+                <td>{{$school->phone}}</td>
+                <td>{{$school->wilaya}}</td>
+                <td>{{$school->commune}}</td>
+                <td>{{$school->status}}</td>
+                <td>{{$school->photo}}</td>
                     <td>
                     <a href="{{route('add-cour', 'edit')}}" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
                         <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
                     </td>
                 </tr>
+            @endforeach
             </tbody>
             <tfoot>
                 <tr>
+                    <th>#</th>
                     <th>اسم المؤسسة</th>
-                    <th>تاريخ النشر</th>
-                    <th>نوع الملف</th>
-                    <th>عدد التحميلات</th>
-                    <th>التقييم</th>
+                    <th>البريد الالكتروني</th>
+                    <th>رقم الهاتف</th>
+                    <th>الولاية</th>
+                    <th>البلدية</th>
+                    <th>الحالة</th>
+                    <th>الصورة</th>
                     <th>العمليات</th>
                 </tr>
             </tfoot>
@@ -91,9 +82,9 @@
         "info":     true,
             "language": {
                 "lengthMenu": "عرض _MENU_ مؤسسة في كل صفحة",
-                "zeroRecords": "لا يوجد مؤسسات مطابقة",
+                "infoEmpty": "لا يوجد مؤسسات مطابقة",
                 "info": "عرض _PAGE_ من _PAGES_",
-                "infoEmpty": "لا يوجد مؤسسات",
+                "zeroRecords": "لا يوجد مؤسسات",
                 "search":         "بحث: ",
                 "infoFiltered": "(عرض من اصل _MAX_ مؤسسة موجود)",
                 "paginate": {

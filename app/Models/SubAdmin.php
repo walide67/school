@@ -20,4 +20,12 @@ class SubAdmin extends Authenticatable
         'password', 'notification_token', 'remember_token'
     ];
 
+
+    public function classes(){
+        return $this->hasMany(Classe::class, 'school_id');
+    }
+
+    public function teachers(){
+        return $this->hasMany(Teacher::class, 'school_id');
+    }
 }

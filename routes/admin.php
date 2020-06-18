@@ -40,5 +40,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::post('/add', 'AnnonceController@addAnnonce')->name('admin.add.annonce.submit');    
     });
 
+    Route::group(['prefix' => 'user'], function(){
+        Route::get('/user-infos', 'AdminController@showUserInfo')->name('admin.user.info');
+        Route::get('/account-infos', 'AdminController@showAccountInfo')->name('admin.account.info');
+    });
+
 
 });

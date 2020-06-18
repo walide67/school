@@ -18,7 +18,7 @@ class CreateAnnoncesTable extends Migration
             $table->string('annonce_title');
             $table->text('annonce_content');
             $table->string('annonce_photo');
-            $table->enum('annonce_type', array('teacher', 'subadmin'));
+            $table->enum('annonce_type', array('admin', 'subadmin','teacher'));
             $table->integer('subadmin_id')->nullable()->unsigned();
             $table->integer('teacher_id')->nullable()->unsigned();
             $table->foreign('subadmin_id')->references('id')->on('subadmins')

@@ -171,7 +171,7 @@
                   <div class="card-body p-0">
                       <ul class="m-0">
                           <li >
-                          <a href="{{ route('school-infos') }}"  class="btn text-light py-3 w-100">
+                          <a href="{{ route('admin.user.info') }}"  class="btn text-light py-3 w-100">
                             <i class="fas fa-school my-auto mx-1"></i>
                                 <span class="label" >
                                     معلومات المؤسسة
@@ -180,7 +180,7 @@
                           </li>
                           <hr class="bg-light p-0 m-0"/>
                           <li>
-                          <a href="{{ route('subAdmin-Account-infos') }}" class="btn text-light py-3 w-100">
+                          <a href="{{ route('admin.account.info') }}" class="btn text-light py-3 w-100">
                                 <i class="fas fa-tools my-auto mx-1"></i>
                                 <span class="label">
                                     اعدادات الحساب

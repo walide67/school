@@ -16,7 +16,8 @@ class FieldController extends Controller
     }
 
     public function index(){
-        return view('admin.fields.show_fields');
+        $fields = Field::all();
+        return view('admin.fields.show_fields')->with('fields', $fields);
     }
 
     public function addFieldForm(){

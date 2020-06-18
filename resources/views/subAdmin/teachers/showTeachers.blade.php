@@ -12,62 +12,61 @@ Cours
 @section('content')
     <div class="container">
         <div class="w-100 text-center my-3">
-        <h3>الدروس</h3>
+        <h3>الأساتذة</h3>
         </div>
         <div class="w-100 mx-0 my-3">
             <table id="coursTable" class="row-border hover stripe text-right" style=" width: 100% ">
                 <thead>
                     <tr>
-                        <th>اسم الدرس</th>
-                        <th>تاريخ النشر</th>
-                        <th>نوع الملف</th>
-                        <th>عدد التحميلات</th>
+                        <th>#</th>
+                        <th>الاسم</th>
+                        <th>اللقب</th>
+                        <th>البريد الالكتروني / رقم الهاتف</th>
+                        <th>المادة</th>
+                        <th>الحالة</th>
+                        <th>الصورة</th>
                         <th>التقييم</th>
+                        <th>الأقسام</th>
                         <th>العمليات</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($teachers as $teacher)
                     <tr>
-                        <td>المتميز في الرياضيات</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
-                            <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>المتميز في الرياضيات</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
-                            <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>المتميز في الرياضيات</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
+                    <td>{{$teacher->id}}</td>
+                    <td>{{$teacher->first_name}}</td>
+                    <td>{{$teacher->last_name}}</td>
+                    <td>{{$teacher->identify}}</td>
+                    <td>{{$teacher->matter->matter_name}}</td>
+                    <td>{{$teacher->status}}</td>
+                    <td>{{$teacher->photo}}</td>
+                    <td>{{$teacher->rate}}</td>
+                    <td>
+                        @forelse ($teacher->classes as $classe)
+                        {{$classe->class_level}}{{$classe->field->field_name}}{{$classe->class_number}}
+                        @empty
+                            لا توجد أقسام بعد
+                        @endforelse
+                    </td>
+                        <td class="d-flex no-wrap">
                         <a href="{{route('add-cour', 'edit')}}" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
                             <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
                         </td>
                     </tr>
+                    @endforeach
+
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>اسم الدرس</th>
-                        <th>تاريخ النشر</th>
-                        <th>نوع الملف</th>
-                        <th>عدد التحميلات</th>
+                        <th>#</th>
+                        <th>الاسم</th>
+                        <th>اللقب</th>
+                        <th>البريد الالكتروني / رقم الهاتف</th>
+                        <th>المادة</th>
+                        <th>الحالة</th>
+                        <th>الصورة</th>
                         <th>التقييم</th>
+                        <th>الأقسام</th>
                         <th>العمليات</th>
                     </tr>
                 </tfoot>

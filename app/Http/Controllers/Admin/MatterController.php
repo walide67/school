@@ -16,7 +16,8 @@ class MatterController extends Controller
     }
 
     public function index(){
-        return view('admin.matters.show_matters');
+        $matters = Matter::all();
+        return view('admin.matters.show_matters')->with('matters', $matters);
     }
 
     public function addMatterForm(){

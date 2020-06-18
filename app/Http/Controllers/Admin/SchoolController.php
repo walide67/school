@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Traits\SubAdminTrait;
 use App\Http\Requests\AddSubAdminRequest;
-
+use App\Models\SubAdmin;
 class SchoolController extends Controller
 {
     use SubAdminTrait;
@@ -17,7 +17,8 @@ class SchoolController extends Controller
     }
 
     public function index(){
-        return view('admin.schools.show_schools');
+        $schools = SubAdmin::all();
+        return view('admin.schools.show_schools')->with('schools', $schools);
     }
 
     public function addSchoolForm(){

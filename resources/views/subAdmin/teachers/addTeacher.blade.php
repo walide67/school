@@ -58,10 +58,10 @@ add cour
                 <div class="form-group col-md-6">
                     <label for="metter">المادة</label>
                     <select class="form-control" name="matter" id="matter">
-                      <option value="">select</option>
-                      <option value="1">الرياضيات</option>
-                      <option value="2">اللغة الفرنسية</option>
-                      <option value="3">اللغة العربية</option>
+                      <option value="">اختر المادة</option>
+                      @foreach($matters as $matter)
+                    <option value="{{$matter->id}}">{{$matter->matter_name}}</option>
+                      @endforeach
                     </select>
                     @error('matter')
                     <small class="text-danger" >{{$message}}</small>
@@ -69,15 +69,22 @@ add cour
                   </div>
                 <div class="form-group col-md-6">
                    <div class="form-group">
-                     <label for="field">التخصصات</label>
-                     <select dir="rtl" class="form-control" name="field" id="field" multiple>
-                       <optgroup label="الاولى ثانوي">
-                        <option >الاولى ثانوي جذع مشنرك آداب</option>
-                        <option>الاولى ثانوي جذع مشنرك علوم و تكنولوجيا</option>
+                     <label for="classes">الأقسام</label>
+                     <select dir="rtl" class="form-control" name="classes[]" id="classes" multiple>
+                        <optgroup label="الاولى ثانوي">
+                        @forelse($classes_lvl_1 as $classe)
+                        <option value="{{$classe->id}}">{{$classe->field->field_name .' '.$classe->class_number}}</option>
+                        @endforeach
                        </optgroup>
                        <optgroup label="الثانية ثانوي">
-                        <option>الثانية ثانوي رياضيات</option>
-                        <option>الثانية ثانوي تقني رياضي</option>
+                        @forelse($classes_lvl_2 as $classe)
+                        <option value="{{$classe->id}}">{{$classe->field->field_name .' '.$classe->class_number}}</option>
+                        @endforeach
+                       </optgroup>
+                       <optgroup label="الثالثة ثانوي">
+                        @forelse($classes_lvl_3 as $classe)
+                        <option value="{{$classe->id}}">{{$classe->field->field_name .' '.$classe->class_number}}</option>
+                        @endforeach
                        </optgroup>
                      </select>
                      @error('field')
@@ -106,7 +113,7 @@ add cour
 <script src="{{ asset('multiselect/js/bootstrap-multiselect.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#field').multiselect({
+        $('#classes').multiselect({
             buttonWidth: '100%',
             optionClass: function(){
                 return 'mr-0'
