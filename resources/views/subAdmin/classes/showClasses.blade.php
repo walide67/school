@@ -22,6 +22,7 @@ Cours
                         <th>التخصص</th>
                         <th>رقم القسم</th>
                         <th>المواد</th>
+                        <th>الأساتذة</th>
                         <th>العمليات</th>
                     </tr>
                 </thead>
@@ -34,6 +35,11 @@ Cours
                     <td>
                         @foreach ($classe->matters as $matter)
                             {{ $matter->matter_name }}
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($classe->teachers as $teacher)
+                            {{ $teacher->first_name }} {{ $teacher->last_name }}
                         @endforeach
                     </td>
                         <td class="d-flex no-wrap">
@@ -49,6 +55,7 @@ Cours
                         <th>التخصص</th>
                         <th>رقم القسم</th>
                         <th>المواد</th>
+                        <th>الأساتذة</th>
                         <th>العمليات</th>
                     </tr>
                 </tfoot>

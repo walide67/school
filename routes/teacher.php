@@ -22,18 +22,21 @@ Route::group(['prefix'=> 'teacher-area', 'namespace' => 'Teacher'],function () {
     
         Route::group(['prefix'=> 'cours'],function(){
             Route::get('/', 'Cours@index')->name('showcours');
-            Route::get('/{action}', 'Cours@addCourForm')->name('add-cour');
+            Route::get('/add', 'Cours@addCourForm')->name('add-cour');
+            Route::post('/add', 'Cours@addCour')->name('add.cour.submit');
         });
     
         Route::group(['prefix'=> 'exams'],function(){
             Route::get('/', 'ExamController@showExams')->name('show-exams');
             Route::get('/add', 'ExamController@addExamForm')->name('add-exam');
+            Route::post('/add', 'ExamController@addExam')->name('add.exam.submit');
     
         });
     
         Route::group(['prefix'=> 'annonces'], function(){
             Route::get('/', 'AnnonceController@showAnnonces')->name('show-annonces');
             Route::get('/add', 'AnnonceController@addAnnonceForm')->name('add-annonce');
+            Route::post('/add', 'AnnonceController@addAnnonce')->name('teacher.addAnnonce.submit');
         });
     
         Route::group(['prefix'=> 'user'], function(){

@@ -19,55 +19,44 @@ Cours
                 <thead>
                     <tr>
                         <th>اسم الدرس</th>
-                        <th>تاريخ النشر</th>
+                        <th>نبذة عن الدرس</th>
+                        <th>صورة الدرس</th>
                         <th>نوع الملف</th>
                         <th>عدد التحميلات</th>
+                        <th>عدد الأصوات</th>
                         <th>التقييم</th>
+                        <th>تاريخ النشر</th>
                         <th>العمليات</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($cours as $cour)
                     <tr>
-                        <td>المتميز في الرياضيات</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
-                            <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
+                    <td>{{$cour->cour_name}}</td>
+                    <td>{{$cour->cour_desc}}</td>
+                    <td>{{$cour->cour_photo}}</td>
+                    <td>pdf</td>
+                    <td>{{$cour->download_number}}</td>
+                    <td>{{$cour->votes_number}}</td>
+                    <td>{{$cour->rate}}</td>
+                    <td>{{$cour->created_at}}</td>
+                        <td class=" d-flex flex-nowrap justify-content-around">
+                            <a href="" class="btn btn-warning mx-1">تعديل</a>
+                            <a href="" class="btn btn-danger mx-1">حذف</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>المتميز في الرياضيات</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
-                            <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>المتميز في الرياضيات</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
-                        <a href="{{route('add-cour', 'edit')}}" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>اسم الدرس</th>
-                        <th>تاريخ النشر</th>
+                        <th>نبذة عن الدرس</th>
+                        <th>صورة الدرس</th>
                         <th>نوع الملف</th>
                         <th>عدد التحميلات</th>
+                        <th>عدد الأصوات</th>
                         <th>التقييم</th>
+                        <th>تاريخ النشر</th>
                         <th>العمليات</th>
                     </tr>
                 </tfoot>

@@ -19,55 +19,47 @@ Exams
                 <thead>
                     <tr>
                         <th>اسم الامتحان</th>
-                        <th>تاريخ النشر</th>
+                        <th>نبذة عن الامتحان</th>
+                        <th>صورة الامتحان</th>
+                        <th>ملف الامتحان</th>
+                        <th>تصحيح الامتحان</th>
                         <th>نوع الملف</th>
                         <th>عدد التحميلات</th>
                         <th>التقييم</th>
+                        <th>تاريخ النشر</th>
                         <th>العمليات</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($exams as $exam)
                     <tr>
-                        <td>امتحان الفصل الأول</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
-                            <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
+                    <td>{{$exam->exam_name}}</td>
+                    <td>{{$exam->exam_desc}}</td>
+                    <td>{{$exam->exam_photo}}</td>
+                    <td>{{$exam->file_path}}</td>
+                    <td>{{$exam->correction_path}}</td>
+                    <td>pdf</td>
+                    <td>{{$exam->download_number}}</td>
+                    <td>{{$exam->rate}}</td>
+                    <td>{{$exam->created_at}}</td>
+                        <td class="d-flex flex-nowrap">
+                            <a href="" class="btn btn-warning mx-2 ">تعديل</a>
+                            <a href="" class="btn btn-danger mx-2">حذف</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>امتحان الفصل الأول</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
-                            <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>امتحان الفصل الأول</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>61</td>
-                        <td>3.5</td>
-                        <td>
-                        <a href="{{route('add-cour', 'edit')}}" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>اسم الدرس</th>
-                        <th>تاريخ النشر</th>
+                        <th>اسم الامتحان</th>
+                        <th>نبذة عن الامتحان</th>
+                        <th>صورة الامتحان</th>
+                        <th>ملف الامتحان</th>
+                        <th>تصحيح الامتحان</th>
                         <th>نوع الملف</th>
                         <th>عدد التحميلات</th>
                         <th>التقييم</th>
+                        <th>تاريخ النشر</th>
                         <th>العمليات</th>
                     </tr>
                 </tfoot>

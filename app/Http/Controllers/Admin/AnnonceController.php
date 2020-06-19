@@ -32,10 +32,10 @@ class AnnonceController extends Controller
 
         Validator::make($request->all(), $this->addAnnonceRules() )->validate();
 
-        $annonce = $this->createAnnonce($request->all(), '', 'admin');
+        $annonce = $this->createAnnonce($request->all(), auth('admin')->user(), '');
 
         if(!empty($annonce)){
-            return redirect()->back()->with('success', 'Annonce Added with success');
+            return redirect()->back()->with('success', 'Annonce added with success');
         }else{
             return redirect()->back()->with('error', 'Fails to insert annonce try later');
         }

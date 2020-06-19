@@ -22,7 +22,15 @@ class Classe extends Model
         return $this->belongsTo(SubAdmin::class);
     }
 
-    public function teacher(){
+    public function teachers(){
         return $this->belongsToMany(Teacher::class , 'teacher_classe');
+    }
+
+    public function cours(){
+        return $this->belongsToMany(Cour::class, 'classe_cour');
+    }
+
+    public function exams(){
+        return $this->belongsToMany(Exam::class, 'classe_exam');
     }
 }

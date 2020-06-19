@@ -16,12 +16,12 @@ add Class
     <div class="w-75 m-auto">
         @if (session('success'))
             <div class="alert alert-success" role="alert">
-                {{$message}}
+                {{session('success')}}
             </div>
         @endif
         @if (session('error'))
             <div class="alert alert-success" role="alert">
-                {{$message}}
+                {{session('error')}}
             </div>
         @endif
     <form action="{{route('add.class.submit')}}" method="post" class="text-center" >

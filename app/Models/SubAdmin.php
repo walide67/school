@@ -28,4 +28,8 @@ class SubAdmin extends Authenticatable
     public function teachers(){
         return $this->hasMany(Teacher::class, 'school_id');
     }
+
+    public function annonces(){
+        return $this->morphMany(Annonce::class, 'annonceable');
+    }
 }

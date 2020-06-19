@@ -9,4 +9,7 @@ class Annonce extends Model
     protected $fillable = ['annonce_title', 'annonce_content', 'annonce_photo', 'annonce_type', 'subadmin_id', 'teacher_id'];
     protected $hidden = ['subadmin_id', 'teacher_id'];
 
+    public function annonces(){
+        $this->morphTo();
+    }
 }

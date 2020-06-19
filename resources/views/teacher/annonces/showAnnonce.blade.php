@@ -19,45 +19,35 @@ annonces
                 <thead>
                     <tr>
                         <th>عنوان الاعلان</th>
+                        <th>محتوى الاعلان</th>
+                        <th>صورة الاعلان</th>
+                        <th>صلاحية الاعلان</th>
                         <th>تاريخ النشر</th>
-                        <th>نوع الملف</th>
                         <th>العمليات</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($annonces as $annonce)
                     <tr>
-                        <td>اعلان بداية الموسم</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>
-                            <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>اعلان بداية الموسم</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
-                        <td>
-                            <a href="" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
-                            <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>اعلان بداية الموسم</td>
-                        <td>2012/12/02</td>
-                        <td>pdf</td>
+                        <td>{{$annonce->annonce_title}}</td>
+                        <td>{{$annonce->annonce_content}}</td>
+                        <td>{{$annonce->annonce_photo}}</td>
+                        <td>{{$annonce->expired_at}}</td>
+                        <td>{{$annonce->created_at}}</td>
                         <td>
                         <a href="{{route('add-cour', 'edit')}}" class="btn btn-warning my-2 mx-auto m-md-auto">تعديل</a>
                             <a href="" class="btn btn-danger my-2 mx-auto m-md-auto">حذف</a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>عنوان الاعلان</th>
+                        <th>محتوى الاعلان</th>
+                        <th>صورة الاعلان</th>
+                        <th>صلاحية الاعلان</th>
                         <th>تاريخ النشر</th>
-                        <th>نوع الملف</th>
                         <th>العمليات</th>
                     </tr>
                 </tfoot>

@@ -14,4 +14,8 @@ class Matter extends Model
     public function classes(){
         return $this->belongsToMany(Classe::class, 'classe_matter');
     }
+
+    public function teachers(){
+        return $this->hasMany(Teacher::class);
+    }
 }

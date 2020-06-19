@@ -5,15 +5,13 @@
 
  trait AnnonceTrait {
 
-    public function createAnnonce($data, $annonce_photo, $annonceType, $subadminId = null, $teacherId = null){
-        return Annonce::create([
+    public function createAnnonce($data, $parent, $photo_path){
+        $annonce = $parent->annonces()->create([
             'annonce_title' => $data['annonce_title'],
             'annonce_content' => $data['annonce_desc'],
-            'annonce_photo' => $annonce_photo,
-            'annonce_type' => $annonceType,
-            'subadmin_id' => $subadminId,
-            'teacher_id' => $teacherId,
-            'created_at' => time(),
-        ]);
+            'annonce_photo' => $photo_path,
+            'expired_at' => $data['annonce_ex_at'],
+             ]);
+        return $annonce;
     }
  }

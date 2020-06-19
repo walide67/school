@@ -37,4 +37,16 @@ class Teacher extends Authenticatable
     public function classes(){
         return $this->belongsToMany(Classe::class, 'teacher_classe');
     }
+
+    public function annonces(){
+        return $this->morphMany(Annonce::class, 'annonceable');
+    }
+
+    public function cours(){
+        return $this->hasMany(Cour::class);
+    }
+
+    public function exams(){
+        return $this->hasMany(Exam::class);
+    }
 }

@@ -23,12 +23,12 @@ class AnnonceController extends Controller
 
         $request->validate($this->addAnnonceRules());
 
-        $annonce = $this->createAnnonce($request->all(), '','subadmin',auth('subAdmin')->user()->id);
+        $annonce = $this->createAnnonce($request->all(), auth('subAdmin')->user(), '');
 
         if(!empty($annonce)){
-            return redirect()->back()->with('success', 'Annonce added with success.');
+            return redirect()->back()->with('success', 'Annonce added with success');
         }else{
-            return redirect()->back()->with('error', 'fails to add annonce, try later');
+            return redirect()->back()->with('error', 'Fails to insert annonce try later');
         }
     }
 
