@@ -26,7 +26,22 @@ class ConfirmPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
+
+    protected function redirectTo(){
+        if(Auth::guard('teacher')->check()){
+            return '/teacher-area';
+        }
+
+        if(Auth::guard('subAdmin')->check()){
+            return '/sub-admin';
+        }
+
+        if(Auth::guard('admin')->check()){
+            return '/admin';
+        }
+
+    }
 
     /**
      * Create a new controller instance.
@@ -36,5 +51,14 @@ class ConfirmPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function confirm(Request $request)
+    {
+        $request->validate($this->rules(), $this->validationErrorMessages());
+
+        $this->resetPasswordConfirmationTimeout($request);
+
+        return redirect()->intended($this->redirectPath());
     }
 }

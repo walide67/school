@@ -40,7 +40,7 @@ Route::group(['prefix'=> 'teacher-area', 'namespace' => 'Teacher'],function () {
         });
     
         Route::group(['prefix'=> 'user'], function(){
-            Route::get('/', 'UserController@getUserInfos')->name('user-infos');
+            Route::get('/', 'UserController@getUserInfos')->name('user-infos')->middleware('password.confirm');
             Route::get('/account', 'UserController@getAccountInfos')->name('account-infos');
         });
     });

@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Teacher;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Classe;
+use App\Traits\UploadTrait;
 
 class ExamController extends Controller
 {
+    use UploadTrait;
+
     public function showExams(){
-        $exams = auth()->user()->exams;
+        $exams = auth('teacher')->user()->exams;
         return view('teacher.exams.exams')->with('exams', $exams);
     }
 
@@ -37,12 +40,30 @@ class ExamController extends Controller
     public function addExam(Request $request){
         $request->validate($this->addExamRules());
 
+        $file_path = 'uploads/teacher/exams/examsFiles/';
+        $corr_path = 'uploads/teacher/exams/examsCorr/';
+        $photo_path = 'uploads/teacher/exams/examsImages/';
+        $photo_name ='avatar.png';
+        $file_name ='';
+        $corr_name ='';
+
+        if($request->hasFile('exam_file') && $request->exam_file->isValid()){
+            $file_name = $this->uploadfile($request->exam_file, $file_path);
+         }
+
+         if($request->hasFile('exam_corr') && $request->exam_corr->isValid()){
+            $corr_name = $this->uploadfile($request->exam_corr, $corr_path);
+         }
+
+        if($request->hasFile('exam_pic') && $request->exam_pic->isValid()){
+           $photo_name = $this->uploadfile($request->exam_pic, $photo_path);
+        }
         $exam = auth('teacher')->user()->exams()->create([
             'exam_name' => $request->exam_title,
             'exam_desc' => $request->exam_desc,
-            'exam_photo' => '',
-            'file_path' => '',
-            'correction_path' => '',
+            'exam_photo' => $photo_path.$photo_name,
+            'file_path' => $file_path.$file_name,
+            'correction_path' => $corr_path.$corr_name,
         ]);
 
         if(!empty($exam)){
@@ -58,13 +79,13 @@ class ExamController extends Controller
 
     private function addExamRules(){
         return [
-            'exam_title' => 'required',
+            'exam_title' => 'required|max:100',
             'exam_lvl' => 'required',
             'classes' => 'required',
             'exam_desc' => 'required',
-            'exam_pic' => 'required',
-            'exam_file' => 'required',
-            'exam_corr' => 'required'
+            'exam_pic' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'exam_file' => 'file|required|mimes:jpeg,png,jpg,pdf,doc,docx',
+            'exam_corr' => 'file|nullable|mimes:jpeg,png,jpg,pdf,doc,docx'
         ];
     }
 

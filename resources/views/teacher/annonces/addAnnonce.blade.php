@@ -46,6 +46,9 @@ add annonce
           <div class="form-group col-md-6">
             <label for="annonce_ex_at">تاريخ صلاحية الاعلان</label>
             <input type="datetime-local" name="annonce_ex_at" id="annonce_ex_at" class="form-control">
+          @error('annonce_ex_at')
+          <small class="text-danger">{{$message}}</small>
+          @enderror
           </div>
         </div>
           <div class="form-row">

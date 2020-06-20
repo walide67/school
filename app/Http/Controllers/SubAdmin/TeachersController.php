@@ -9,14 +9,15 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Matter;
 use App\Models\Classe;
 use App\Models\Teacher;
+use App\Traits\UploadTrait;
 
 class TeachersController extends Controller
 {
     use Teachers;
-
+    use UploadTrait;
 
     public function index(){
-        $teachers = Teacher::where('school_id', auth('subAdmin')->user()->id)->get();
+        $teachers = auth('subAdmin')->user()->teachers;
         return view('subAdmin.teachers.showTeachers')->with('teachers', $teachers);
     }
 
@@ -44,12 +45,19 @@ class TeachersController extends Controller
 
     public function addTeacher(SubAdminAddTeacherRequest $request){
         $school_id = Auth::guard('subAdmin')->id();
-        $teacher = $this->createTeacher($request->all(), $school_id, '', 1);
+
+        $teacher = $this->createTeacher($request, $school_id, 1);
+        
         if(!empty($teacher)){
+
             $teacher->classes()->sync($request->classes);
+
             return redirect()->back()->with('success', 'Teacher added with Success');
+        
         }else{
+
             return redirect()->back()->with('error', 'fails to insert teacher try later');
+        
         }
         
     }

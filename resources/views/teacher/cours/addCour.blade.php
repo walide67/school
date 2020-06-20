@@ -14,16 +14,18 @@ add cour
 @section('content')
 <div class="container text-center">
     <h4 class="my-3">اضافة درس جديد</h4>
-    @if (session('success'))
-        <div class="alert alert-success w-50" role="alert">
+    <div class="row w-100">
+      @if (session('success'))
+        <div class="alert alert-success w-50 m-auto" role="alert">
           {{session('success')}}
         </div>
     @endif
     @if (session('error'))
-        <div class="alert alert-danger w-50" role="alert">
+        <div class="alert alert-danger w-50 m-auto" role="alert">
           {{session('error')}}
         </div>
     @endif
+    </div>
     <div class=" w-75 m-auto ">
     <form action="{{route('add.cour.submit')}}" method="post" class=" text-right" enctype="multipart/form-data">
         @csrf

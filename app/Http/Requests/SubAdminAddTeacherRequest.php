@@ -29,6 +29,7 @@ class SubAdminAddTeacherRequest extends FormRequest
             'user_fname' => 'required',
             'user_lname' => 'required',
             'matter' => 'required',
+            'user_photo' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

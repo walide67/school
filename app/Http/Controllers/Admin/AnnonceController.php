@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 use App\Traits\AnnonceTrait;
+use App\Traits\UploadTrait;
 use App\Models\Annonce;
 
 class AnnonceController extends Controller
 {
     use AnnonceTrait;
+    use UploadTrait;
 
    public function __construct(){
         $this->middleware('auth:admin')->except('adminLoginForm', 'adminLogin');
@@ -31,8 +33,15 @@ class AnnonceController extends Controller
     public function addAnnonce(Request $request){
 
         Validator::make($request->all(), $this->addAnnonceRules() )->validate();
+        
+        $file_path = 'uploads/admin/annonces/';
+        $file_name = 'avatar.jpg';
 
-        $annonce = $this->createAnnonce($request->all(), auth('admin')->user(), '');
+        if($request->hasFile('annonce_pic') && $request->annonce_pic->isValid()){
+           $file_name = $this->uploadfile($request->annonce_pic, $file_path);
+        }
+        
+        $annonce = $this->createAnnonce($request->all(), auth('admin')->user(), $file_path.$file_name);
 
         if(!empty($annonce)){
             return redirect()->back()->with('success', 'Annonce added with success');
@@ -45,7 +54,8 @@ class AnnonceController extends Controller
         return [
             'annonce_title' => 'required|max:100',
             'annonce_desc' => 'required',
-            'annonce_pic' => 'image',
+            'annonce_pic' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'annonce_ex_at'=> 'required',
         ];
     }
 

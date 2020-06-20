@@ -5,7 +5,7 @@
         <div class="header-content p-0 m-0">
             <div class="row text-center">
                 <div class="avatar m-auto">
-                    <img src="{{ asset('images/teacher.png') }}" alt="" srcset="">
+                    <img src="{{ asset(auth('teacher')->user()->photo) }}" alt="" srcset="">
                 </div>
                 <div class=" col-md-12 my-1">
                     <h5 class="w-100 text-center my-0">لوحة تحكم الأستاذ</h5>

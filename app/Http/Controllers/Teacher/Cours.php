@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cour;
 use App\Models\Classe;
+use App\Traits\UploadTrait;
 
 class Cours extends Controller
 {
+
+    use UploadTrait;
+    
     public function index(){
         $cours = auth('teacher')->user()->cours;
         return view('teacher.cours.showCours', compact('cours'));
@@ -37,11 +41,25 @@ class Cours extends Controller
 
     public function addCour(Request $request){
         $request->validate($this->addCourRules());
+
+        $file_path = 'uploads/teacher/cours/coursFiles/';
+        $photo_path = 'uploads/teacher/cours/coursImages/';
+        $photo_name ='avatar.png';
+        $file_name ='';
+
+        if($request->hasFile('cour_file') && $request->cour_file->isValid()){
+            $file_name = $this->uploadfile($request->cour_file, $file_path);
+         }
+
+        if($request->hasFile('cour_pic') && $request->cour_pic->isValid()){
+           $photo_name = $this->uploadfile($request->cour_pic, $photo_path);
+        }
+
         $cour = auth('teacher')->user()->cours()->create([
             'cour_name' => $request->cour_title,
             'cour_desc' => $request->cour_desc,
-            'cour_photo' => '',
-            'file_path' => ''
+            'cour_photo' => $photo_path.$photo_name,
+            'file_path' => $file_path.$file_name
         ]);
 
         if(!empty($cour)){

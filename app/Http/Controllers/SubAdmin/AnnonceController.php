@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\AnnonceTrait;
 use App\Models\Annonce;
+use App\Traits\UploadTrait;
 class AnnonceController extends Controller
 {
     use annonceTrait;
+    use UploadTrait;
 
     public function index(){
         $annonces = Annonce::where('subadmin_id', auth()->user()->id)->get();
@@ -23,7 +25,14 @@ class AnnonceController extends Controller
 
         $request->validate($this->addAnnonceRules());
 
-        $annonce = $this->createAnnonce($request->all(), auth('subAdmin')->user(), '');
+        $file_path = 'uploads/school/annonces/';
+        $file_name = 'avatar.jpg';
+
+        if($request->hasFile('annonce_pic') && $request->annonce_pic->isValid()){
+           $file_name = $this->uploadfile($request->annonce_pic, $file_path);
+        }
+
+        $annonce = $this->createAnnonce($request->all(), auth('subAdmin')->user(), $file_path.$file_name);
 
         if(!empty($annonce)){
             return redirect()->back()->with('success', 'Annonce added with success');
@@ -36,7 +45,7 @@ class AnnonceController extends Controller
         return [
             'annonce_title' => 'required',
             'annonce_desc' => 'required',
-            'annonce_pic' => 'nullable|image',
+            'annonce_pic' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

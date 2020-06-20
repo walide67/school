@@ -34,7 +34,8 @@ add annonce
           <small class="text-danger">{{$message}}</small>
           @enderror
         </div>
-        <div class="form-group">
+        <div class="form-row">
+          <div class="form-group col-md-6">
             <label for="annonce_pic">صورة الاعلان</label>
             <input type="file" class="form-control-file" name="annonce_pic" id="annonce_pic" placeholder="اضافة صورة للاعلان" aria-describedby="annonce_pic_helper">
             @error('annonce_pic')
@@ -42,6 +43,14 @@ add annonce
             @enderror
             <small id="annonce_pic_helper" class="form-text text-muted">يمكن وضع صورة اختيارية كغلاف للاعلان</small>
           </div>
+          <div class="form-group col-md-6">
+            <label for="annonce_ex_at">تاريخ صلاحية الاعلان</label>
+            <input type="datetime-local" name="annonce_ex_at" id="annonce_ex_at" class="form-control">
+          @error('annonce_ex_at')
+          <small class="text-danger">{{$message}}</small>
+          @enderror
+          </div>
+        </div>
           <div class="form-row">
             <button type="submit" class="btn btn-success m-auto">اضافة</button>
           </div>

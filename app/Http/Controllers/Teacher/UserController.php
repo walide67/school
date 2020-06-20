@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public function __construct(){
+        
+    }
     public function getUserInfos(){
         return view('teacher.user.userInfos');
     }

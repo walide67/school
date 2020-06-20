@@ -27,10 +27,10 @@ class AddSubAdminRequest extends FormRequest
             'email' => 'required',
             'phone_num' => 'required',
             'school_name' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:8',
             'wilaya' => 'required',
             'commune' => 'required',
-            'school_pic' => 'required|image',
+            'school_pic' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

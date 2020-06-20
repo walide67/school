@@ -12,7 +12,7 @@
    <div class="container mt-5">
       <div class="row justify-content-around">
          <div class="col-md-5 text-center">
-            <div class="card">
+            <div class="card shadow">
               <div class="card-header bg-info text-light">
                 <h1> <i class="fas fa-user-lock"></i> </h1>
                 <h4>Teachers Login</h4>
@@ -39,6 +39,7 @@
                   <div class="form-group">
                     <label for="password">Password</label>
                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                     <small><a href="#" class="text-primery">Forgot password ?</a></small>
                      @error('password')
                      <small class="text-danger" >{{$message}}</small>
                      @enderror
@@ -54,6 +55,7 @@
                      <button type="submit" class="btn  btn-info">Login</button>
                   </div>
                   </form>
+                  <h6 class="py-4"><a href="#" class="text-primery">Create account</a></h6>
                </div>
             </div>
          </div>
