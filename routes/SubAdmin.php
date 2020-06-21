@@ -39,8 +39,9 @@ Route::group(['middleware' => 'auth:subAdmin'], function(){
     });
 
     Route::group(['prefix' => 'user'], function(){
-        Route::get('/', 'UserController@schoolInfos')->name('school-infos');
-        Route::get('/add', 'UserController@accountInfos')->name('subAdmin-Account-infos');
+        Route::get('/user', 'UserController@schoolInfos')->name('school-infos');
+        Route::post('/user', 'UserController@setSchoolInfos')->name('school.infos.submit');
+        Route::get('/account', 'UserController@accountInfos')->name('subAdmin-Account-infos');
     });
 });
 });

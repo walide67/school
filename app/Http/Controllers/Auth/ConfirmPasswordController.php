@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Illuminate\Http\Request;
 
 class ConfirmPasswordController extends Controller
 {
@@ -28,17 +29,17 @@ class ConfirmPasswordController extends Controller
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
 
-    protected function redirectTo(){
-        if(Auth::guard('teacher')->check()){
-            return '/teacher-area';
+    protected function redirectTo($guard){
+        if($guard == "teacher"){
+            return 'teacher.panel';
         }
 
-        if(Auth::guard('subAdmin')->check()){
-            return '/sub-admin';
+        if($guard == "subAdmin"){
+            return 'subAdmin-panel';
         }
 
-        if(Auth::guard('admin')->check()){
-            return '/admin';
+        if($guard == "admin"){
+            return 'admin.panel';
         }
 
     }
@@ -50,15 +51,44 @@ class ConfirmPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+
+        if(auth('teacher')->check()){
+            $this->middleware('auth:teacher');
+        }
+
+        if(auth('subAdmin')->check()){
+            $this->middleware('auth:subAdmin');
+        }
+
+        if(auth('admin')->check()){
+            $this->middleware('auth:admin');
+        }
+    }
+
+    public function rules($guard){
+        return [
+            'password' => "required|password:$guard"
+        ];
     }
 
     public function confirm(Request $request)
     {
-        $request->validate($this->rules(), $this->validationErrorMessages());
+        $guard = "";
+        if(auth('teacher')->check()){
+            $guard = "teacher";
+        }
+
+        if(auth('subAdmin')->check()){
+            $guard = "subAdmin";
+        }
+
+        if(auth('admin')->check()){
+            $guard = "admin";
+        }
+        $request->validate($this->rules($guard), $this->validationErrorMessages());
 
         $this->resetPasswordConfirmationTimeout($request);
 
-        return redirect()->intended($this->redirectPath());
+        return redirect()->intended($this->redirectTo($guard));
     }
 }

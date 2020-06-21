@@ -9,46 +9,79 @@ Personal Informations
 @section('head-content')
 <link rel="stylesheet" href="{{ asset('multiselect/css/bootstrap-multiselect.css') }}">
 @endsection
-
 @section('content')
-
 <div class="container text-center">
     <h4 class="my-3">المعلومات الشخصية</h4>
 </div>
-<div class="my-3 border w-75 m-auto p-3">
-    <form action="" method="post" class="text-center" >
-        <div class="form-row text-right">
+<div class=" my-3 border w-75 m-auto p-3">
+    <div class="row w-100">
+        @if (session('success'))
+        <div class="alert alert-success mx-auto mb-3" role="alert">
+           {{session('success')}}
+        </div>
+    @endif
+    </div>
+<form action="{{route('user.infos.submit')}}" method="post" class="text-right" enctype="multipart/form-data" >
+        @csrf
+        <div class="form-row">
             <div class="form-group col-md-6">
               <label for="user_fname">الاسم</label>
-              <input type="text" class="form-control" name="user_fname" id="user_fname" placeholder="">
-            </div>
+            <input type="text" value="{{auth('teacher')->user()->first_name}}" class="form-control" name="user_fname" id="user_fname" placeholder="">
+            @error('user_fname')
+                <small class="text-danger">
+                  {{$message}}
+                </small>
+            @enderror
+        </div>
             <div class="form-group col-md-6">
                 <label for="user_lname">اللقب</label>
-                <input type="text" class="form-control" name="user_lname" id="user_lname" placeholder="">
+                <input type="text" value="{{auth('teacher')->user()->last_name}}" class="form-control" name="user_lname" id="user_lname" placeholder="">
+                @error('user_lname')
+                <small class="text-danger">
+                  {{$message}}
+                </small>
+            @enderror
             </div>
         </div>
-            <div class="form-row text-right">
+            <div class="form-row">
                 <div class="form-group col-md-6">
-                   <div class="form-group">
-                     <label for="field">التخصصات</label>
-                     <select dir="rtl" class="form-control" name="field" id="field" multiple>
-                       <optgroup label="الاولى ثانوي">
-                        <option>الاولى ثانوي جذع مشنرك آداب</option>
-                        <option>الاولى ثانوي جذع مشنرك علوم و تكنولوجيا</option>
+                    <label for="classes">الأقسام</label>
+                    <select class="form-control" name="classes[]" id="classes" multiple>
+                      <optgroup label="الاولى ثانوي">
+                        @forelse($classes_lvl_1 as $classe)
+                        <option value="{{$classe->id}}" {{auth('teacher')->user()->classes->contains('id', $classe->id)?'selected':''}}>{{$classe->field->field_name .' '.$classe->class_number}}</option>
+                        @endforeach
                        </optgroup>
                        <optgroup label="الثانية ثانوي">
-                        <option>الثانية ثانوي رياضيات</option>
-                        <option>الثانية ثانوي تقني رياضي</option>
+                        @forelse($classes_lvl_2 as $classe)
+                        <option value="{{$classe->id}}" {{auth('teacher')->user()->classes->contains('id', $classe->id)?'selected':''}}>{{$classe->field->field_name .' '.$classe->class_number}}</option>
+                        @endforeach
                        </optgroup>
-                     </select>
-                   </div>
-                </div>
+                       <optgroup label="الثالثة ثانوي">
+                        @forelse($classes_lvl_3 as $classe)
+                        <option value="{{$classe->id}} {{auth('teacher')->user()->classes->contains('id', $classe->id)?'selected':''}}">{{$classe->field->field_name .' '.$classe->class_number}}</option>
+                        @endforeach
+                       </optgroup>
+                    </select>
+                    @error('classes')
+                    <small class="text-danger">
+                      {{$message}}
+                    </small>
+                @enderror
+                  </div>
             <div class="form-group col-md-6">
                 <label for="user_photo">الصورة الشخصية</label>
                 <input type="file" class="form-control-file" name="user_photo" id="user_photo" placeholder="" aria-describedby="fileHelpId">
-              </div>
+                @error('user_photo')
+                <small class="text-danger">
+                  {{$message}}
+                </small>
+            @enderror
             </div>
-            <button type="submit" class="btn btn-success m-auto">حفط</button>
+            </div>
+            <div class="form-row">
+                <button type="submit" class="btn btn-success mx-auto my-5">حفط</button>
+            </div>
     </form>
 </div>
 
@@ -58,7 +91,7 @@ Personal Informations
 <script src="{{ asset('multiselect/js/bootstrap-multiselect.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#field').multiselect({
+        $('#classes').multiselect({
             buttonWidth: '100%',
             optionClass: function(){
                 return 'mr-0'
