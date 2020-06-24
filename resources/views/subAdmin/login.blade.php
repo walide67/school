@@ -9,7 +9,7 @@
    <title>Sub Admins Login</title>
 </head>
 <body>
-   <div class="container mt-5">
+   <div class="container my-5">
       <div class="row justify-content-around">
          <div class="col-md-5 text-center">
             <div class="card shadow">
@@ -36,14 +36,13 @@
                   <small class="text-danger" >{{$message}}</small>
                      @enderror
                   </div>
-                  <br>
                   <div class="form-group">
                     <label for="password">Password</label>
                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
                      @error('password')
                      <small class="text-danger" >{{$message}}</small>
                      @enderror
-                     <small><a href="#" class="text-primery">Forgot password ?</a></small>
+                  <small><a href="{{route('subadmin.password.request')}}" class="text-primery">Forgot password ?</a></small>
                   </div>
                   <div class="form-check">
                     <label class="form-check-label">
@@ -56,7 +55,7 @@
                      <button type="submit" class="btn  btn-warning">Login</button>
                   </div>
                   </form>
-                  <h6 class="py-4"><a href="#" class="text-primery">Create account</a></h6>
+                  <h6 class="py-2"><a href="#" class="text-primery">Create account</a></h6>
                </div>
             </div>
          </div>

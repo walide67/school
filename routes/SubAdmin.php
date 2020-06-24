@@ -15,7 +15,14 @@ Route::group(['prefix' => 'sub-admin', 'namespace'=> 'SubAdmin'], function () {
     Route::get('/login', 'SubAdminController@loginForm')->name('subAdmin.login');
     Route::post('/login', 'SubAdminController@login')->name('subAdmin.login.submit');
 
-Route::group(['middleware' => 'auth:subAdmin'], function(){
+    Route::group(['namespace' => 'Auth', 'prefix' => 'password'], function(){
+        Route::get('reset', 'ForgotPasswordController@ShowLinkrequestForm')->name('subadmin.password.request');
+        Route::post('email','ForgotPasswordController@sendResetLinkEmail')->name('subadmin.password.email');
+        Route::get('reset/{token}', 'ResetPasswordController@showResetForm')->name('subadmin.password.reset');
+        Route::post('reset','ResetPasswordController@reset')->name('subadmin.password.update');
+    });
+
+    Route::group(['middleware' => 'auth:subAdmin'], function(){
     Route::get('/logout', 'SubAdminController@logout')->name('subAdmin.logout');
 
     Route::get('/', 'SubAdminController@index')->name('subAdmin-panel');

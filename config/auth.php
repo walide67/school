@@ -126,6 +126,28 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+            'timeout' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'admin_password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+            'timeout' => 60,
+        ],
+        'subAdmins' => [
+            'provider' => 'subAdmins',
+            'table' => 'subadmin_password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+            'timeout' => 60,
+        ],
+        'teachers' => [
+            'provider' => 'teachers',
+            'table' => 'teacher_password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+            'timeout' => 60,
         ],
     ],
 
@@ -140,6 +162,6 @@ return [
     |
     */
 
-    'password_timeout' => 5,
+    'password_timeout' => 1800,
 
 ];

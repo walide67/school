@@ -14,6 +14,13 @@ Route::group(['prefix'=> 'teacher-area', 'namespace' => 'Teacher'],function () {
     Route::get('/login', 'TeacherController@LoginForm')->name('teacher.login');
     Route::post('/login', 'TeacherController@login')->name('teacher.login.submit');
 
+    Route::group(['namespace' => 'Auth', 'prefix' => 'password'], function(){
+        Route::get('reset', 'ForgotPasswordController@ShowLinkrequestForm')->name('teacher.password.request');
+        Route::post('email','ForgotPasswordController@sendResetLinkEmail')->name('teacher.password.email');
+        Route::get('reset/{token}', 'ResetPasswordController@showResetForm')->name('teacher.password.reset');
+        Route::post('reset','ResetPasswordController@reset')->name('teacher.password.update');
+    });
+
     Route::group(['middleware' => 'auth:teacher'], function(){
         
         Route::get('/logout', 'TeacherController@logout')->name('teacher.logout');

@@ -9,10 +9,10 @@
    <title>Admin Login</title>
 </head>
 <body>
-   <div class="container mt-5">
+   <div class="container my-5">
       <div class="row justify-content-around">
          <div class="col-md-5 text-center">
-            <div class="card">
+            <div class="card shadow">
               <div class="card-header bg-warning text-light">
                 <h1> <i class="fas fa-user-lock"></i> </h1>
                 <h4>Admin Login</h4>
@@ -40,6 +40,7 @@
                   <div class="form-group">
                     <label for="password">Password</label>
                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
+                  <small class="text-primery"><a href="{{route('admin.password.request')}}">Forgot password?</a></small>
                      @error('password')
                      <small class="text-danger" >{{$message}}</small>
                      @enderror

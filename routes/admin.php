@@ -16,6 +16,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::post('/login', 'AdminController@adminLogin')->name('admin.login.submit');
     Route::get('/logout', 'AdminController@logout')->name('admin.logout');
 
+    Route::group(['namespace' => 'Auth', 'prefix' => 'password'], function(){
+        Route::get('reset', 'ForgotPasswordController@ShowLinkrequestForm')->name('admin.password.request');
+        Route::post('email','ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+        Route::get('reset/{token}', 'ResetPasswordController@showResetForm')->name('admin.password.reset');
+        Route::post('reset','ResetPasswordController@reset')->name('admin.password.update');
+    });
+
     Route::group(['prefix' => 'schools'], function(){
         Route::get('/', 'SchoolController@index')->name('admin.schools');
         Route::get('/add', 'SchoolController@addSchoolForm')->name('admin.add.school');
